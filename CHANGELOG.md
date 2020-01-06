@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.1.0...v1.2.0) (2020-01-06)
+
+
+### Features
+
+* **base:** fix configuration for released artifacts ([35cdac0](https://github.com/cxpsemea/cxsast_consolidated_report/commit/35cdac0a79435f03714fa3c3c6d1c93f749d71b6))
+
 # [1.1.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.0.0...v1.1.0) (2020-01-06)
 
 
