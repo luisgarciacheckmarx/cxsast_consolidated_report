@@ -3,8 +3,9 @@ name: Master branch workflow
 on:
   push:
     branches:
-      - master
-
+      - 'feature/*'
+      - 'hotfix/*'
+      - 'bug/*'
 jobs:
   build:
     name: Automated build
