@@ -34,4 +34,4 @@ jobs:
 
       - name: build & pack
         run:
-          npm run ci:build && ci:dist
+          npm run ci:build && npm run ci:dist
