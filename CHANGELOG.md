@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.0.0...v1.1.0) (2020-01-06)
+
+
+### Features
+
+* **base:** reverting last changes ([5021ea0](https://github.com/cxpsemea/cxsast_consolidated_report/commit/5021ea0092fdf15c115b147d09385339f7e60cea))
+
 # 1.0.0 (2020-01-06)
 
 
