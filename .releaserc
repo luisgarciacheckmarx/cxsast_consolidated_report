@@ -30,12 +30,6 @@
             {
                 "assets": [
                     {
-                        "path": "README.md"
-                    },
-                    {
-                        "path": "CHANGELOG.md"
-                    },
-                    {
                         "path": "dist/*"
                     }
                 ],

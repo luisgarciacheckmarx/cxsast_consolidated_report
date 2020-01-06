@@ -41,7 +41,7 @@
         "ci:dist:clean": "rm -rf ./dist && mkdir ./dist",
         "ci:dist:prepare": "cp ./README.md ./dist &&  cp ./CHANGELOG.md ./dist && cp ./LICENSE ./dist && cp -R resources ./dist && cp config-sample.json ./dist",
         "ci:dist:win-x64": "pkg --targets node10-win-x64 build/index.js --output dist/cxsast_consolidated_report_v${npm_package_version}_win_x64.exe",
-        "ci:release": "echo SKIPPING Release"
+        "ci:release": "semantic-release --debug"
     },
     "dependencies": {
         "axios": "0.19.0",

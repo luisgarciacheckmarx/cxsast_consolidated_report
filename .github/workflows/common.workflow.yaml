@@ -3,9 +3,7 @@ name: Master branch workflow
 on:
   push:
     branches:
-      - 'feature/*'
-      - 'hotfix/*'
-      - 'bug/*'
+      - master
 
 jobs:
   build:
@@ -35,6 +33,4 @@ jobs:
 
       - name: build & pack
         run:
-          npm run ci:build:transpile && 
-          npm run ci:build:compile
-
+          npm run ci:build && ci:dist
