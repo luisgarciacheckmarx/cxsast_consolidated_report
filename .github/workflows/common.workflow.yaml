@@ -1,0 +1,40 @@
+name: Master branch workflow
+
+on:
+  push:
+    branches:
+      - 'feature/*'
+      - 'hotfix/*'
+      - 'bug/*'
+
+jobs:
+  build:
+    name: Automated build
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: install & check dependencies
+        run: 
+          npm run ci:deps:install && 
+          npm run ci:deps:audit
+
+      - name: check code quality
+        run: 
+          npm run ci:check:code
+
+      - name: test
+        run: 
+          npm run ci:test:unit && 
+          npm run ci:test:integration && 
+          npm run ci:test:e2e
+
+      - name: build & pack
+        run:
+          npm run ci:build:transpile && 
+          npm run ci:build:compile
+
