@@ -30,7 +30,22 @@
             {
                 "assets": [
                     {
-                        "path": "dist/*"
+                        "path": "dist/README.md"
+                    },
+                    {
+                        "path": "dist/CHANGELOG.md"
+                    },
+                    {
+                        "path": "dist/LICENSE"
+                    },
+                    {
+                        "path": "dist/*.exe"
+                    },
+                    {
+                        "path": "dist/*.json"
+                    },
+                    {
+                        "path": "dist/resources/templates/consolidated-report.html"
                     }
                 ],
                 "releasedLabels": [
