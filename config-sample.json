@@ -1,16 +1,11 @@
 {
-  "host": "https://cxhost.com",
-  "username": "cxsupport@checkmarx.com",
-  "password": "cxpassword",
-  "clientSecret": "014DF517-39D1-4453-B7B3-9930C563627C",
-  "appName": "Consolidated Reports",
-  "projectNames": ["project1", "project2"],
-  "projectNamesPattern": "projectX",
-  "email": {
-    "service": "gmail",
-    "sender": "sender@gmail.com",
-    "password": "password",
-    "recievers": ["reciever@checkmarx.com"],
-    "subject": "Checkmarx scans consolidated report"
-  }
+    "host": "https://cxhost.com",
+    "username": "cxsupport@checkmarx.com",
+    "password": "cxpassword",
+    "email": {
+        "host": "smtp.server.com",
+        "port": "465",
+        "sender": "sender@email.com",
+        "password": "emailPassword"
+    }
 }

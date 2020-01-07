@@ -50,9 +50,11 @@
         "nodemailer": "6.4.2",
         "nodemailer-handlebars": "1.0.1",
         "query-string": "6.9.0",
-        "soap": "0.30.0"
+        "soap": "0.30.0",
+        "yargs": "15.1.0"
     },
     "devDependencies": {
+        "@types/yargs": "13.0.4",
         "@commitlint/cli": "8.2.0",
         "@commitlint/config-conventional": "8.2.0",
         "@semantic-release/changelog": "3.0.6",
@@ -64,7 +66,6 @@
         "@semantic-release/release-notes-generator": "7.3.5",
         "@types/bluebird": "3.5.29",
         "@types/dateformat": "3.0.1",
-        "@types/dotenv": "8.2.0",
         "@types/jest": "24.0.25",
         "@types/node": "13.1.2",
         "@types/nodemailer": "6.4.0",

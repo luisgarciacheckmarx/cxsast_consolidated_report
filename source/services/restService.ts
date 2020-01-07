@@ -15,7 +15,7 @@ const getTokenData = async () => {
     grant_type: 'password',
     scope: 'sast_rest_api',
     client_id: 'resource_owner_client',
-    client_secret: config.clientSecret,
+    client_secret: "014DF517-39D1-4453-B7B3-9930C563627C",
   }
 
   const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
