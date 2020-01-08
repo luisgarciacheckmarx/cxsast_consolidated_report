@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.2.0...v1.2.1) (2020-01-08)
+
+
+### Bug Fixes
+
+* **base:** fix lint errors ([2e6e257](https://github.com/cxpsemea/cxsast_consolidated_report/commit/2e6e257fb7058cfbc2d48b17ebabff80815c5f5c))
+
 # [1.2.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.1.0...v1.2.0) (2020-01-06)
 
 
