@@ -8,7 +8,8 @@ const log = logger('email service');
 const cfg = config.email;
 
 const transporter = nodemailer.createTransport({
-    service: cfg.service,
+    host: cfg.host,
+    port: cfg.port,
     auth: {
         user: cfg.sender,
         pass: cfg.password,
@@ -28,13 +29,13 @@ transporter.use(
     })
 );
 
-const sendEmail = (emailData: any) => {
+const sendEmail = (emailData: any, subject: string, recievers: string) => {
     log.info('Sending Email(s)...');
 
     const opts = {
         from: cfg.sender,
-        to: cfg.recievers.toString(),
-        subject: cfg.subject,
+        to: recievers,
+        subject,
         template: 'consolidated-report',
         context: emailData,
     };
