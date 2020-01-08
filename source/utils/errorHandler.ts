@@ -10,7 +10,6 @@ const handleError = (error: AxiosError) => {
         message = 'The provided Cx server is down or unreachable!';
     } else {
         message = error.message;
-        console.log(error);
     }
 
     log.fatal(message);

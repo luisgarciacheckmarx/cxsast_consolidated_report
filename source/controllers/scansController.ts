@@ -80,7 +80,7 @@ const setData = (project: any, scanData: any) => {
 };
 
 const fectchScanData = async (scanId: number) => {
-    const statistics = await getScanStatistics(scanId); //highSeverity, mediumSeverity, lowSeverity,infoSeverity
+    const statistics = await getScanStatistics(scanId); // highSeverity, mediumSeverity, lowSeverity,infoSeverity
     const scanResults: any = await getScanResults(scanId);
 
     return {
