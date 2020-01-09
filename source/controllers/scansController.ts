@@ -65,6 +65,9 @@ export const setProjectsData = async (namePattern: string) => {
                 const scanResults: any = await getScanResults(lastScan.id);
                 const severity = lastScan.scanRiskSeverity;
 
+                combinedResults.loc += lastScan.scanState.linesOfCode;
+                combinedResults.scannedFiles += lastScan.scanState.filesCount;
+
                 if (combinedResults.overallRiskScore < severity) {
                     combinedResults.overallRiskScore = severity;
                 }
@@ -73,8 +76,6 @@ export const setProjectsData = async (namePattern: string) => {
                     combinedResults[STATE_MAP[scanResult.State]]++;
                     combinedResults[STATUS_MAP[scanResult.ResultStatus]]++;
                     combinedResults[SEVERITY_MAP[scanResult.Severity]]++;
-                    combinedResults.loc += lastScan.scanState.linesOfCode;
-                    combinedResults.scannedFiles += lastScan.scanState.filesCount;
 
                     if (scanResult.ResultStatus !== 'Fixed') {
                         data.totalUnresolvedIssues++;
