@@ -2,12 +2,14 @@ import dateFormat from 'dateformat';
 import yargs from 'yargs';
 import { setProjectsData, combinedResults, resultsByProject } from './controllers/scansController';
 import { EmailService } from './services';
-import { logger, handleError } from './utils';
+import { logger, handleError, validateArgs } from './utils';
 
 const log = logger('main');
 const args = yargs.argv;
 
 const main = async () => {
+    validateArgs(args);
+
     log.info('fetching scans data ...');
     try {
         await setProjectsData(String(args.projectPattern));
