@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.2.1...v1.3.0) (2020-01-09)
+
+
+### Features
+
+* **#9:** add input arguments validation ([1073899](https://github.com/cxpsemea/cxsast_consolidated_report/commit/10738995b726105960819c3d1b3178eabdd21e02)), closes [#9](https://github.com/cxpsemea/cxsast_consolidated_report/issues/9)
+
 ## [1.2.1](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.2.0...v1.2.1) (2020-01-08)
 
 
