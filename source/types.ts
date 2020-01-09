@@ -60,7 +60,7 @@ export interface IScan {
     comment: string;
     dateAndTime: IScanDateTime;
     resultsStatistics: any;
-    scanState: IscanSate;
+    scanState: IScanState;
     owner: string;
     origin: string;
     initiatorName: string;
