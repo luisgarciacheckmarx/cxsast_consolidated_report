@@ -1,29 +1,22 @@
 import dateFormat from 'dateformat';
-import { STATE_MAP, STATUS_MAP, SEVERITY_MAP, INITIAL_COMBINED_RESULTS, INITIAL_RESULTS_BY_PROJECT } from '../utils/constants';
+import { INITIAL_COMBINED_RESULTS, SEVERITY_MAP, STATUS_MAP, STATE_MAP } from '../utils/constants';
 import { RestService, SoapService } from '../services';
-import { config } from '../utils';
-import { IStringTMap } from '../types';
+import { IStringTMap, IProject, IScan, IScanResult } from '../types';
 
 export let combinedResults: IStringTMap<number> = INITIAL_COMBINED_RESULTS;
-export let resultsByProject: IStringTMap<any> = [];
+export let resultsByScan: IStringTMap<any> = [];
 
 const getSelectedProjects = async (namePattern: string) => {
     const cx = await RestService.getInstance();
     const projects = await cx.getProjects();
 
-    return projects.data.filter((project: any) => project.name.toLowerCase().startsWith(namePattern.toLowerCase()));
+    return projects.data.filter((project: IProject) => project.name.toLowerCase().startsWith(namePattern.toLowerCase()));
 };
 
-const getLastScans = async (projectId: number) => {
+const getLastScan = async (projectId: number) => {
     const cx = await RestService.getInstance();
-    const scans = await cx.getScans(projectId, config.lastScansNumber || 1);
-    return scans.data;
-};
-
-const getScanStatistics = async (id: number) => {
-    const cx = await RestService.getInstance();
-    const statistics = await cx.getScanStatistics(id);
-    return statistics.data;
+    const scan = await cx.getLastScan(projectId);
+    return scan.data[0];
 };
 
 const getScanResults = (scanId: number) => {
@@ -40,76 +33,60 @@ const getScanResults = (scanId: number) => {
     });
 };
 
-const setData = (project: any, scanData: any) => {
-    combinedResults.highVulnerabilities += scanData.highSeverity;
-    combinedResults.mediumVulnerabilities += scanData.mediumSeverity;
-    combinedResults.lowVulnerabilities += scanData.lowSeverity;
-    combinedResults.loc += scanData.scanState.linesOfCode;
-    combinedResults.scannedFiles += scanData.scanState.filesCount;
-
-    const severity = scanData.scanRiskSeverity;
-    if (combinedResults.overallRiskScore < severity) {
-        combinedResults.overallRiskScore = severity;
-    }
-
-    const projectData = {
-        id: project.id,
-        name: project.name,
-        lastScan: {
-            id: scanData.id,
-            dateTime: dateFormat(scanData.dateAndTime.startedOn, 'yyyy-mm-dd HH:MM'),
-        },
-        ...scanData,
-        ...INITIAL_RESULTS_BY_PROJECT,
-    };
-
-    scanData.scanResults.forEach((result: any) => {
-        combinedResults[STATE_MAP[result.state]]++;
-        combinedResults[STATUS_MAP[result.status]]++;
-
-        projectData[SEVERITY_MAP[result.severity]][STATE_MAP[result.state]]++;
-        projectData[STATUS_MAP[result.status]]++;
-        projectData[STATE_MAP[result.state]]++;
-
-        if (result.status === 'New' || result.status !== 'Reoccured ') {
-            projectData.totalUnresolvedIssues++;
-        }
-    });
-
-    resultsByProject.push(projectData);
-};
-
-const fectchScanData = async (scanId: number) => {
-    const statistics = await getScanStatistics(scanId); // highSeverity, mediumSeverity, lowSeverity,infoSeverity
-    const scanResults: any = await getScanResults(scanId);
-
-    return {
-        ...statistics,
-        scanResults: scanResults.map((result: any) => {
-            return {
-                status: result.ResultStatus,
-                state: result.State,
-                severity: result.Severity,
-            };
-        }),
-    };
-};
-
 export const setProjectsData = async (namePattern: string) => {
-    const selectedProjects = await getSelectedProjects(namePattern);
+    const selectedProjects: [IProject] = await getSelectedProjects(namePattern);
 
     combinedResults.totalScannedProjects = selectedProjects.length;
 
     if (selectedProjects.length) {
         await Promise.all(
-            selectedProjects.map(async (project: any) => {
-                const lastScans = await getLastScans(project.id);
-                await Promise.all(
-                    lastScans.map(async (scan: any) => {
-                        const scanData = await fectchScanData(scan.id);
-                        setData(project, { ...scan, ...scanData });
-                    })
-                );
+            selectedProjects.map(async (project: IProject) => {
+                const lastScan: IScan = await getLastScan(project.id);
+
+                const data: any = {
+                    id: lastScan.id,
+                    dateTime: dateFormat(lastScan.dateAndTime.startedOn, 'yyyy-mm-dd HH:MM'),
+                    project: lastScan.project,
+                    statistics: { high: 0, medium: 0, low: 0 },
+                    newIssues: 0,
+                    recurrentIssues: 0,
+                    fixedIssues: 0,
+                    totalUnresolvedIssues: 0,
+                    urgent: 0,
+                    toVerify: 0,
+                    notExploitable: 0,
+                    proposedNotExploitable: 0,
+                    confirmed: 0,
+                    high: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
+                    medium: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
+                    low: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
+                };
+
+                const scanResults: any = await getScanResults(lastScan.id);
+                const severity = lastScan.scanRiskSeverity;
+
+                if (combinedResults.overallRiskScore < severity) {
+                    combinedResults.overallRiskScore = severity;
+                }
+
+                scanResults.forEach((scanResult: IScanResult) => {
+                    combinedResults[STATE_MAP[scanResult.State]]++;
+                    combinedResults[STATUS_MAP[scanResult.ResultStatus]]++;
+                    combinedResults[SEVERITY_MAP[scanResult.Severity]]++;
+                    combinedResults.loc += lastScan.scanState.linesOfCode;
+                    combinedResults.scannedFiles += lastScan.scanState.filesCount;
+
+                    if (scanResult.ResultStatus !== 'Fixed') {
+                        data.totalUnresolvedIssues++;
+                    }
+
+                    data.statistics[SEVERITY_MAP[scanResult.Severity]]++;
+                    data[SEVERITY_MAP[scanResult.Severity]][STATE_MAP[scanResult.State]]++;
+                    data[STATUS_MAP[scanResult.ResultStatus]]++;
+                    data[STATE_MAP[scanResult.State]]++;
+                });
+
+                resultsByScan.push(data);
             })
         );
     } else {
