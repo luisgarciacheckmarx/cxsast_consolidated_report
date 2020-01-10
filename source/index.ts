@@ -1,6 +1,6 @@
 import dateFormat from 'dateformat';
 import yargs from 'yargs';
-import { setProjectsData, combinedResults, resultsByProject } from './controllers/scansController';
+import { setProjectsData, combinedResults, resultsByScan } from './controllers/scansController';
 import { EmailService } from './services';
 import { logger, handleError, validateArgs } from './utils';
 
@@ -17,7 +17,7 @@ const main = async () => {
 
         const emailBodyData = {
             combinedResults,
-            resultsByProject,
+            resultsByScan,
             totalUnresolvedIssues: combinedResults.newIssues + combinedResults.recurrentIssues,
             currentDate: dateFormat(new Date(), 'dddd, mmmm dS, yyyy, h:MM:ss TT'),
             appName: String(args.appName),

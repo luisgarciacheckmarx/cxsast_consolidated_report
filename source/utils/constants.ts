@@ -25,9 +25,9 @@ export const INITIAL_COMBINED_RESULTS: IStringTMap<number> = {
     overallRiskScore: 0,
     newIssues: 0,
     recurrentIssues: 0,
-    highVulnerabilities: 0,
-    mediumVulnerabilities: 0,
-    lowVulnerabilities: 0,
+    high: 0,
+    medium: 0,
+    low: 0,
     toVerify: 0,
     urgent: 0,
     confirmed: 0,
@@ -36,19 +36,4 @@ export const INITIAL_COMBINED_RESULTS: IStringTMap<number> = {
     loc: 0,
     scannedFiles: 0,
     totalScannedProjects: 0,
-};
-
-export const INITIAL_RESULTS_BY_PROJECT: IStringTMap<any> = {
-    newIssues: 0,
-    recurrentIssues: 0,
-    fixedIssues: 0,
-    totalUnresolvedIssues: 0,
-    urgent: 0,
-    toVerify: 0,
-    notExploitable: 0,
-    proposedNotExploitable: 0,
-    confirmed: 0,
-    high: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
-    medium: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
-    low: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
 };

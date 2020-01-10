@@ -58,8 +58,7 @@ const restService = (() => {
 
         return {
             getProjects: async () => await client.get('/projects'),
-            getScans: async (id: number, last: number) => await client.get(`/sast/scans?projectId=${id}&scanStatus=Finished&last=${last}`),
-            getScanStatistics: async (id: number) => await client.get(`/sast/scans/${id}/resultsStatistics`),
+            getLastScan: async (id: number) => await client.get(`/sast/scans?projectId=${id}&scanStatus=Finished&last=1`),
         };
     }
 
