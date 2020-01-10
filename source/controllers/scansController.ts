@@ -43,51 +43,55 @@ export const setProjectsData = async (namePattern: string) => {
             selectedProjects.map(async (project: IProject) => {
                 const lastScan: IScan = await getLastScan(project.id);
 
-                const data: any = {
-                    id: lastScan.id,
-                    dateTime: dateFormat(lastScan.dateAndTime.startedOn, 'yyyy-mm-dd HH:MM'),
-                    project: lastScan.project,
-                    statistics: { high: 0, medium: 0, low: 0 },
-                    newIssues: 0,
-                    recurrentIssues: 0,
-                    fixedIssues: 0,
-                    totalUnresolvedIssues: 0,
-                    urgent: 0,
-                    toVerify: 0,
-                    notExploitable: 0,
-                    proposedNotExploitable: 0,
-                    confirmed: 0,
-                    high: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
-                    medium: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
-                    low: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
-                };
+                if (lastScan) {
+                    const data: any = {
+                        id: lastScan.id,
+                        dateTime: dateFormat(lastScan.dateAndTime.startedOn, 'yyyy-mm-dd HH:MM'),
+                        project: lastScan.project,
+                        statistics: { high: 0, medium: 0, low: 0 },
+                        newIssues: 0,
+                        recurrentIssues: 0,
+                        fixedIssues: 0,
+                        totalUnresolvedIssues: 0,
+                        urgent: 0,
+                        toVerify: 0,
+                        notExploitable: 0,
+                        proposedNotExploitable: 0,
+                        confirmed: 0,
+                        high: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
+                        medium: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
+                        low: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
+                    };
 
-                const scanResults: any = await getScanResults(lastScan.id);
-                const severity = lastScan.scanRiskSeverity;
+                    const scanResults: any = await getScanResults(lastScan.id);
+                    const severity = lastScan.scanRiskSeverity;
 
-                combinedResults.loc += lastScan.scanState.linesOfCode;
-                combinedResults.scannedFiles += lastScan.scanState.filesCount;
+                    combinedResults.loc += lastScan.scanState.linesOfCode;
+                    combinedResults.scannedFiles += lastScan.scanState.filesCount;
 
-                if (combinedResults.overallRiskScore < severity) {
-                    combinedResults.overallRiskScore = severity;
-                }
-
-                scanResults.forEach((scanResult: IScanResult) => {
-                    combinedResults[STATE_MAP[scanResult.State]]++;
-                    combinedResults[STATUS_MAP[scanResult.ResultStatus]]++;
-                    combinedResults[SEVERITY_MAP[scanResult.Severity]]++;
-
-                    if (scanResult.ResultStatus !== 'Fixed') {
-                        data.totalUnresolvedIssues++;
+                    if (combinedResults.overallRiskScore < severity) {
+                        combinedResults.overallRiskScore = severity;
                     }
 
-                    data.statistics[SEVERITY_MAP[scanResult.Severity]]++;
-                    data[SEVERITY_MAP[scanResult.Severity]][STATE_MAP[scanResult.State]]++;
-                    data[STATUS_MAP[scanResult.ResultStatus]]++;
-                    data[STATE_MAP[scanResult.State]]++;
-                });
+                    scanResults.forEach((scanResult: IScanResult) => {
+                        combinedResults[STATE_MAP[scanResult.State]]++;
+                        combinedResults[STATUS_MAP[scanResult.ResultStatus]]++;
+                        combinedResults[SEVERITY_MAP[scanResult.Severity]]++;
 
-                resultsByScan.push(data);
+                        if (scanResult.ResultStatus !== 'Fixed') {
+                            data.totalUnresolvedIssues++;
+                        }
+
+                        data.statistics[SEVERITY_MAP[scanResult.Severity]]++;
+                        data[SEVERITY_MAP[scanResult.Severity]][STATE_MAP[scanResult.State]]++;
+                        data[STATUS_MAP[scanResult.ResultStatus]]++;
+                        data[STATE_MAP[scanResult.State]]++;
+                    });
+
+                    resultsByScan.push(data);
+                } else {
+                    throw new Error('There isnt any finished scan for the specified project(s)!');
+                }
             })
         );
     } else {
