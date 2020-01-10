@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.3.0...v1.3.1) (2020-01-10)
+
+
+### Bug Fixes
+
+* fix the loc and files counter ([bd141b3](https://github.com/cxpsemea/cxsast_consolidated_report/commit/bd141b3d72e6d814f434b3dd1575b679a2a6e36b))
+* fix typo on IScan interface definition ([ea079a9](https://github.com/cxpsemea/cxsast_consolidated_report/commit/ea079a93df642bdb890b9d9ea9c1fa09cab6a6aa))
+* **#11:** fix the calculated issues by severity total ([6e5c330](https://github.com/cxpsemea/cxsast_consolidated_report/commit/6e5c330cc3f9d18825c3274e133128af921072a7))
+
 # [1.3.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.2.1...v1.3.0) (2020-01-09)
 
 
