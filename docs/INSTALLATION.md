@@ -1,7 +1,3 @@
 # Installation
 
-In order to install the **CxSAST Consolidated Report** utility please follow the instructions described bellow:
-
-## Installing from distribution files
-
-## Building and installing from source code
+To get started with **CxSAST Consolidated Report** you just need to download the latest relase and execute the `.exe` file.

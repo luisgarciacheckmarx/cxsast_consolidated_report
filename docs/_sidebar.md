@@ -2,4 +2,4 @@
 - [Installation](INSTALLATION.md)
 - [Configuration](CONFIGURATION.md)
 - [Utilization](UTILIZATION.md)
-- [Reporting bugs](REPORTING_BUGS.md)
+- [Contributing](CONTRIBUTING.md)
