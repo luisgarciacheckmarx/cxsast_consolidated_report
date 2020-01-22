@@ -6,6 +6,7 @@
         "host": "smtp.server.com",
         "port": "465",
         "sender": "sender@email.com",
-        "password": "emailPassword"
+        "password": "emailPassword",
+        "fallbackLocation": "saved-reports"
     }
 }
