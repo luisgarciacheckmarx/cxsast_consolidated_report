@@ -1,9 +1,6 @@
 import nodemailer from 'nodemailer';
-import { logger, handleError, config } from '../utils';
-import { join as pathJoin } from 'path';
+import { logger, config, reportGenerator, handleError } from '../utils';
 
-// tslint:disable-next-line
-const hbs = require('nodemailer-handlebars');
 const log = logger('email service');
 const cfg = config.email;
 
@@ -16,35 +13,27 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-transporter.use(
-    'compile',
-    hbs({
-        viewEngine: {
-            extName: '.html',
-            layoutsDir: pathJoin(process.cwd(), 'resources/templates'),
-            defaultLayout: 'consolidated-report.html',
-        },
-        viewPath: pathJoin(process.cwd(), 'resources/templates'),
-        extName: '.html',
-    })
-);
-
-const sendEmail = (emailData: any, subject: string, recievers: string) => {
+const sendEmail = (html: any, subject: string, recievers: string, appName: string) => {
     log.info('Sending Email(s)...');
 
     const opts = {
         from: cfg.sender,
         to: recievers,
         subject,
-        template: 'consolidated-report',
-        context: emailData,
+        html,
     };
 
-    transporter.sendMail(opts, (err: any) => {
+    transporter.sendMail(opts, async (err: any) => {
         if (err) {
-            handleError(err);
+            log.info(`Failed to send the email(s)! - ${err}`);
+            try {
+                await reportGenerator.saveHtmlFile(html, appName);
+            } catch (saveError) {
+                handleError(saveError);
+            }
+        } else {
+            log.info('Email(s) sent!');
         }
-        log.info('Email(s) sent!!');
     });
 };
 
