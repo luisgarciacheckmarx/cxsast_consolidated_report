@@ -24,7 +24,7 @@ const main = async () => {
             appName: String(args.appName),
         });
 
-        EmailService.sendEmail(compiledTemplate, String(args.emailSubject), String(args.recievers), String(args.appName));
+        EmailService.sendEmail(compiledTemplate, String(args.emailSubject), String(args.emailRecipients), String(args.appName));
     } catch (error) {
         handleError(error);
     }
