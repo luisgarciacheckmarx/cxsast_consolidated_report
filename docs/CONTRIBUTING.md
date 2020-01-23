@@ -37,9 +37,7 @@ All new features and bug fixes should be submitted as pull requests, so the comm
 Before working on a bug fix or a new feature, please make sure of the following:
 
 -   [ ] **There is no similar pull request that was rejected or is not merged yet** ([link](https://github.com/cxpsemea/cxsast_consolidated_report/pulls)).
-        Add a comment on this pull request otherwise. Explain us why this pull request is urgent or important to you.
--   [ ] **There is an open issue related to this bug or feature**.
-        Please create one otherwise. It is often useful to talk about the bug fix or feature and the best way to implement it before working on it. You can skip this step for obvious changes (like typo in the documentation).
+-   [ ] **There is an open issue related to this bug or feature**([link](https://github.com/cxpsemea/cxsast_consolidated_report/issues)).
 
 After you made these checks, please follow these advices to create your pull requests:
 
