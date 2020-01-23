@@ -13,12 +13,12 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendEmail = (html: any, subject: string, recievers: string, appName: string) => {
+const sendEmail = (html: any, subject: string, emailRecipients: string, appName: string) => {
     log.info('Sending Email(s)...');
 
     const opts = {
         from: cfg.sender,
-        to: recievers,
+        to: emailRecipients,
         subject,
         html,
     };
