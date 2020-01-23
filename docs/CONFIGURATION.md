@@ -20,7 +20,6 @@ In order to configure the **CxSAST Consolidated Report** utility please follow t
 
 3. Create a `resources/templates` folder and place the template inside of it. By default the template is the consolidated-report.html file.
 
-####Project tree
 After all the configuration steps please make sure the folder tree looks like this:
 
 ```
