@@ -1,4 +1,4 @@
-import fs, { promises as fsPromises } from 'fs';
+import fs from 'fs-extra';
 import handlebars from 'handlebars';
 import { join as pathJoin } from 'path';
 import { config, handleError, logger } from '../utils';
@@ -16,21 +16,17 @@ const getCompiledHtml = (data: any) => {
 
 const saveHtmlFile = async (htmlContent: any, appName: string) => {
     const fallbackLocation = config.email.fallbackLocation;
-    
+
     if (fallbackLocation) {
         try {
             log.info('Saving to the filesystem...');
 
             const filename = `${sanitize(appName)}-${new Date().getTime()}`;
             const dir = pathJoin(process.cwd(), fallbackLocation);
-
-            if (!fs.existsSync(dir)) {
-                fs.mkdirSync(dir);
-            }
-
             const filePath = `${dir}/${filename}.html`;
 
-            await fsPromises.writeFile(filePath, htmlContent);
+            await fs.ensureDir(dir);
+            await fs.writeFile(filePath, htmlContent);
 
             log.info(`File was saved on ${filePath}`);
         } catch (err) {
