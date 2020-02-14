@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.4.0...v1.4.1) (2020-02-14)
+
+
+### Bug Fixes
+
+* **chore:** remove node fs experimental api warning ([3734d38](https://github.com/cxpsemea/cxsast_consolidated_report/commit/3734d384639ec5d1eee05a5b5b056d6abfaacb0a))
+
 # [1.4.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.3.1...v1.4.0) (2020-01-22)
 
 
