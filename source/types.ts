@@ -74,3 +74,27 @@ export interface IScan {
     finishedScanStatus: any;
     partialScanReasons: any;
 }
+
+export interface IVulnerability {
+    name: string;
+    ocurrences: number;
+    severity: string;
+}
+
+export interface IConsolidatedData {
+    overallRiskScore: number;
+    newIssues: number;
+    recurrentIssues: number;
+    high: number;
+    medium: number;
+    low: number;
+    toVerify: number;
+    urgent: number;
+    confirmed: number;
+    notExploitable: number;
+    proposedNotExploitable: number;
+    loc: number;
+    scannedFiles: number;
+    totalScannedProjects: number;
+    vulnerabilities: IVulnerability[];
+}

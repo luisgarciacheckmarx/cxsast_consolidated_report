@@ -24,7 +24,7 @@
         }
     },
     "scripts": {
-        "dev": "nodemon --watch source --exec ts-node source/index.ts --projectPattern node --appName 'Test Project Reports' --emailSubject 'Emails Test Subject' --emailRecipients 'email1@mail.com, email2@mail.com'",
+        "dev": "nodemon --watch source --exec ts-node source/index.ts --projectPattern NodeGoat-test2 --appName 'nodegoat-test' --emailSubject 'Emails Test Subject' --emailRecipients 'email1@mail.com, email2@mail.com'",
         "doc": "docsify serve ./docs",
         "lint": "npm run ci:check:code",
         "test": "npm run ci:test:unit",
@@ -48,6 +48,7 @@
         "dateformat": "3.0.3",
         "fs-extra": "8.1.0",
         "handlebars": "4.5.3",
+        "lodash": "4.17.15",
         "log4js": "6.1.0",
         "nodemailer": "6.4.2",
         "query-string": "6.9.0",
@@ -66,7 +67,6 @@
         "@semantic-release/github": "5.5.5",
         "@semantic-release/npm": "5.3.5",
         "@semantic-release/release-notes-generator": "7.3.5",
-        "@types/bluebird": "3.5.29",
         "@types/dateformat": "3.0.1",
         "@types/fs-extra": "8.0.1",
         "@types/jest": "24.0.25",
