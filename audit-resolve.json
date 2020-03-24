@@ -1,0 +1,54 @@
+{
+  "decisions": {
+    "1179|handlebars>optimist>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|@semantic-release/release-notes-generator>conventional-changelog-writer>handlebars>optimist>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|semantic-release>@semantic-release/release-notes-generator>conventional-changelog-writer>handlebars>optimist>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|@semantic-release/npm>npm>libnpx>update-notifier>latest-version>package-json>registry-auth-token>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|semantic-release>@semantic-release/npm>npm>libnpx>update-notifier>latest-version>package-json>registry-auth-token>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|@semantic-release/npm>npm>update-notifier>latest-version>package-json>registry-auth-token>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|semantic-release>@semantic-release/npm>npm>update-notifier>latest-version>package-json>registry-auth-token>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|@semantic-release/npm>npm>libnpx>update-notifier>latest-version>package-json>registry-url>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|semantic-release>@semantic-release/npm>npm>libnpx>update-notifier>latest-version>package-json>registry-url>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|@semantic-release/npm>npm>update-notifier>latest-version>package-json>registry-url>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|semantic-release>@semantic-release/npm>npm>update-notifier>latest-version>package-json>registry-url>rc>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    },
+    "1179|cz-conventional-changelog>commitizen>minimist": {
+      "decision": "ignore",
+      "madeAt": 1585060521076
+    }
+  },
+  "rules": {},
+  "version": 1
+}
