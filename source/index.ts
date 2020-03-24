@@ -1,6 +1,6 @@
 import dateFormat from 'dateformat';
 import yargs from 'yargs';
-import { setProjectsData, combinedResults, resultsByScan } from './controllers/scansController';
+import { getReportData } from './controllers/scansController';
 import { EmailService } from './services';
 import { logger, handleError, validateArgs, reportGenerator } from './utils';
 
@@ -13,14 +13,15 @@ const main = async () => {
     log.info('fetching scans data ...');
 
     try {
-        await setProjectsData(String(args.projectPattern));
+        const date = new Date();
+        const data = await getReportData(String(args.projectPattern));
         log.info('Finished the data fetch!');
 
         const compiledTemplate = reportGenerator.getCompiledHtml({
-            combinedResults,
-            resultsByScan,
-            totalUnresolvedIssues: combinedResults.newIssues + combinedResults.recurrentIssues,
-            currentDate: dateFormat(new Date(), 'dddd, mmmm dS, yyyy, h:MM:ss TT'),
+            ...data,
+            totalUnresolvedIssues: data.combinedResults.newIssues + data.combinedResults.recurrentIssues,
+            currentDate: dateFormat(date, 'dddd, mmmm dS, yyyy, h:MM:ss TT'),
+            year: dateFormat(date, 'yyyy'),
             appName: String(args.appName),
         });
 

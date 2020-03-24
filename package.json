@@ -24,14 +24,14 @@
         }
     },
     "scripts": {
-        "dev": "nodemon --watch source --exec ts-node source/index.ts --projectPattern node --appName 'Test Project Reports' --emailSubject 'Emails Test Subject' --emailRecipients 'email1@mail.com, email2@mail.com'",
+        "dev": "nodemon --watch source --exec ts-node source/index.ts --projectPattern node --appName 'nodegoat-test' --emailSubject 'Emails Test Subject' --emailRecipients 'email1@mail.com, email2@mail.com'",
         "doc": "docsify serve ./docs",
         "lint": "npm run ci:check:code",
         "test": "npm run ci:test:unit",
         "build": "npm run ci:build",
         "dist": "npm run ci:dist",
         "ci:deps:install": "npm install",
-        "ci:deps:audit": "npm audit --production",
+        "ci:deps:audit": "check-audit --production",
         "ci:check:code": "tslint --project ./tsconfig.json",
         "ci:test:unit": "echo SKIPPING Unit Tests",
         "ci:test:integration": "echo SKIPPING Integration Tests",
@@ -41,13 +41,23 @@
         "ci:dist:clean": "rm -rf ./dist && mkdir ./dist",
         "ci:dist:prepare": "cp ./README.md ./dist &&  cp ./CHANGELOG.md ./dist && cp ./LICENSE ./dist && cp -R resources ./dist && cp config-sample.json ./dist",
         "ci:dist:win-x64": "pkg --targets node10-win-x64 build/index.js --output dist/cxsast_consolidated_report_v${npm_package_version}_win_x64.exe",
-        "ci:release": "semantic-release"
+        "ci:release": "semantic-release",
+        "commit": "git-cz"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "hooks": {
+        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     },
     "dependencies": {
         "axios": "0.19.0",
         "dateformat": "3.0.3",
         "fs-extra": "8.1.0",
-        "handlebars": "4.5.3",
+        "handlebars": "4.7.3",
+        "lodash": "4.17.15",
         "log4js": "6.1.0",
         "nodemailer": "6.4.2",
         "query-string": "6.9.0",
@@ -70,14 +80,17 @@
         "@types/dateformat": "3.0.1",
         "@types/fs-extra": "8.0.1",
         "@types/jest": "24.0.25",
+        "@types/lodash": "4.14.149",
         "@types/node": "13.1.2",
         "@types/nodemailer": "6.4.0",
         "@types/yargs": "13.0.4",
         "@types/yup": "0.26.27",
+        "cz-conventional-changelog": "3.0.2",
         "docsify-cli": "4.4.0",
         "husky": "3.1.0",
         "jest": "24.9.0",
         "nodemon": "2.0.2",
+        "npm-audit-resolver": "2.2.0",
         "pkg": "4.3.8",
         "semantic-release": "15.14.0",
         "ts-jest": "24.2.0",

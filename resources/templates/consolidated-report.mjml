@@ -1,0 +1,377 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-text padding="0" />
+      <mj-section padding-left="40px" padding-right="40px" background-color="#fff" />
+      <mj-all font-family="'Open Sans', sans-serif" />
+    </mj-attributes>
+  </mj-head>
+
+  <mj-body background-color="#d6dde5" width="1024px" padding="20px 0 80px">
+    <mj-section padding-top="50px">
+      <mj-column>
+        <mj-include path="../templates/common/checkmarx-logo.mjml" />
+      </mj-column>
+      <mj-column>
+        <mj-text align="right">
+          <p>{{currentDate}}</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#fff" padding="40px 0 65px">
+      <mj-column padding="10px 0">
+        <mj-text align="center" font-size="24px" font-weight="bold" padding-top="0">
+          Here is your scans report for the "{{appName}}" application
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="0 0 50px" background-color="#fff">
+      <mj-group>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="18px">
+            Overall Risk Score
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="24px" font-weight="bold">
+            {{combinedResults.overallRiskScore}}
+          </mj-text>
+        </mj-column>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="18px">
+            New Issues
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="24px" font-weight="bold">
+            {{combinedResults.newIssues}}
+          </mj-text>
+        </mj-column>
+        <mj-column>
+          <mj-text align="center" padding="0 0 10px" font-size="18px">
+            Recurrent Issues
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="24px" font-weight="bold">
+            {{combinedResults.recurrentIssues}}
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section padding="0 0 50px" background-color="#fff">
+      <mj-group>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="16px">
+            #of High Vulnerabilities
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="18px" font-weight="bold">
+            {{combinedResults.high}}
+          </mj-text>
+        </mj-column>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="16px">
+            #of Medium Vulnerabilities
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="18px" font-weight="bold">
+            {{combinedResults.medium}}
+          </mj-text>
+        </mj-column>
+        <mj-column>
+          <mj-text align="center" padding="0 0 10px" font-size="16px">
+            #of Low Vulnerabilities
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="18px" font-weight="bold">
+            {{combinedResults.low}}
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section padding="0" background-color="#fff">
+      <mj-group>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            To verify
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="16px" font-weight="bold">
+            {{combinedResults.toVerify}}
+          </mj-text>
+        </mj-column>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            Urgent
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="16px" font-weight="bold">
+            {{combinedResults.urgent}}
+          </mj-text>
+        </mj-column>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            Confirmed
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="16px" font-weight="bold">
+            {{combinedResults.confirmed}}
+          </mj-text>
+        </mj-column>
+        <mj-column border-right="1px solid black">
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            Not Exploitable
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="16px" font-weight="bold">
+            {{combinedResults.notExploitable}}
+          </mj-text>
+        </mj-column>
+        <mj-column>
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            Proposed Not Exploitable
+          </mj-text>
+          <mj-text align="center" padding="10px 0 0" font-size="16px" font-weight="bold">
+            {{combinedResults.proposedNotExploitable}}
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section padding="50px 0 0" background-color="#fff">
+      <mj-group>
+        <mj-column>
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            Total LOC: {{combinedResults.loc}}
+          </mj-text>
+        </mj-column>
+        <mj-column>
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            Scanned Files: {{combinedResults.scannedFiles}}
+          </mj-text>
+        </mj-column>
+        <mj-column>
+          <mj-text align="center" padding="0 0 10px" font-size="14px">
+            Scanned Projects: {{combinedResults.totalScannedProjects}}
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="50px 0 0">
+        <mj-text font-size="18px" font-weight="bold" padding-top="0">
+          1. Overall scan results by project and vulnerability status
+        </mj-text>
+        <mj-text font-size="16px" padding-top="10px" line-height="22px">
+          The following table shows the relation of the new/recurrent issues identified during the last scan for each project that is part of the "{{appName}}" application.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="0">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
+          <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
+            <th style="border-right: 1px solid #fff">Project</th>
+            <th style="border-right: 1px solid #fff">Total</th>
+            <th style="border-right: 1px solid #fff">New Issues</th>
+            <th>Recurrent Issues</th>
+          </tr>
+          <mj-raw>
+            {{#each resultsByScan}}
+          </mj-raw>
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>{{project.name}} ({{id}} - {{dateTime}})</td>
+            <td>{{totalUnresolvedIssues}}</td>
+            <td>{{newIssues}}</td>
+            <td>{{recurrentIssues}}</td>
+          </tr>
+          <mj-raw>
+            {{/each}}
+          </mj-raw>
+
+          <tr align="center" style="line-height: 30px">
+            <td><b>Total</b></td>
+            <td>{{totalUnresolvedIssues}}</td>
+            <td>{{combinedResults.newIssues}}</td>
+            <td>{{combinedResults.recurrentIssues}}</td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="50px 0 0">
+        <mj-text font-size="18px" font-weight="bold" padding-top="0">
+          2. Overall scan results by project and vulnerability severity
+        </mj-text>
+        <mj-text font-size="16px" padding-top="10px" line-height="22px">
+          The following table shows the amount of high, medium and low vulnerabilities, in each project related to the "{{appName}}" application.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="0">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
+          <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
+            <th style="border-right: 1px solid #fff">Project</th>
+            <th style="border-right: 1px solid #fff">Total</th>
+            <th style="border-right: 1px solid #fff">High</th>
+            <th style="border-right: 1px solid #fff">Medium</th>
+            <th>Low</th>
+          </tr>
+          <mj-raw>
+            {{#each resultsByScan}}
+          </mj-raw>
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>{{project.name}} ({{id}} - {{dateTime}})</td>
+            <td>{{totalUnresolvedIssues}}</td>
+            <td>{{statistics.high}}</td>
+            <td>{{statistics.medium}}</td>
+            <td>{{statistics.low}}</td>
+          </tr>
+          <mj-raw>
+            {{/each}}
+          </mj-raw>
+
+          <tr align="center" style="line-height: 30px">
+            <td><b>Total</b></td>
+            <td>{{totalUnresolvedIssues}}</td>
+            <td>{{combinedResults.high}}</td>
+            <td>{{combinedResults.medium}}</td>
+            <td>{{combinedResults.low}}</td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="50px 0 0">
+        <mj-text font-size="18px" font-weight="bold" padding-top="0">
+          3. Overall scan results by project and result state
+        </mj-text>
+        <mj-text font-size="16px" padding-top="10px" line-height="22px">
+          The following tables show the amount of results that were marked with one of the available states on Checkmarx platform. To provide easier visualization, each table represents a single project that is related to the "{{appName}}" application.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-raw>
+      {{#each resultsByScan}}
+    </mj-raw>
+
+    <mj-section>
+      <mj-column padding="0">
+        <mj-text font-size="14px" padding-top="0" font-weight="bold">
+          {{project.name}} ({{id}} - {{dateTime}})
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column padding="0">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
+          <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
+            <th style="border-right: 1px solid #fff">Severity</th>
+            <th style="border-right: 1px solid #fff">Totals</th>
+            <th style="border-right: 1px solid #fff">To Verify</th>
+            <th style="border-right: 1px solid #fff">Confirmed</th>
+            <th style="border-right: 1px solid #fff">Urgent</th>
+            <th style="border-right: 1px solid #fff">N/Exploitable</th>
+            <th>P/N/Exploitable</th>
+          </tr>
+
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>High</td>
+            <td>{{statistics.high}}</td>
+            <td>{{high.toVerify}}</td>
+            <td>{{high.confirmed}}</td>
+            <td>{{high.urgent}}</td>
+            <td>{{high.notExploitable}}</td>
+            <td>{{high.proposedNotExploitable}}</td>
+          </tr>
+
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>Medium</td>
+            <td>{{statistics.medium}}</td>
+            <td>{{medium.toVerify}}</td>
+            <td>{{medium.confirmed}}</td>
+            <td>{{medium.urgent}}</td>
+            <td>{{medium.notExploitable}}</td>
+            <td>{{medium.proposedNotExploitable}}</td>
+          </tr>
+
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>Low</td>
+            <td>{{statistics.low}}</td>
+            <td>{{low.toVerify}}</td>
+            <td>{{low.confirmed}}</td>
+            <td>{{low.urgent}}</td>
+            <td>{{low.notExploitable}}</td>
+            <td>{{low.proposedNotExploitable}}</td>
+          </tr>
+          <tr align="center" style="line-height: 40px;">
+            <td><b>Total</b></td>
+            <td>{{totalUnresolvedIssues}}</td>
+            <td>{{toVerify}}</td>
+            <td>{{confirmed}}</td>
+            <td>{{urgent}}</td>
+            <td>{{notExploitable}}</td>
+            <td>{{proposedNotExploitable}}</td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+    <mj-raw>
+      {{/each}}
+    </mj-raw>
+
+    <mj-section>
+      <mj-column padding="50px 0 0">
+        <mj-text font-size="18px" font-weight="bold" padding-top="0">
+          4. Result summary
+        </mj-text>
+        <mj-text font-size="16px" padding-top="10px" line-height="22px">
+          The following table shows all the <b>unresolved</b> vulnerabilities found with the amount of occurrences and severity.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="0">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
+          <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
+            <th style="border-right: 1px solid #fff">Vulnerability Type</th>
+            <th style="border-right: 1px solid #fff">Occurrences</th>
+            <th>Severity</th>
+          </tr>
+
+          <mj-raw>
+            {{#each vulnerabilities}}
+          </mj-raw>
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>{{name}}</td>
+            <td>{{occurrences}}</td>
+            <td>{{severityLabel}}</td>
+          </tr>
+          <mj-raw>
+            {{/each}}
+          </mj-raw>
+
+          <mj-raw>
+            {{#unless vulnerabilities}}
+          </mj-raw>
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+          <mj-raw>
+            {{/unless}}
+          </mj-raw>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="0">
+        <mj-text align="center" font-size="12px">
+          Checkmarx | {{year}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

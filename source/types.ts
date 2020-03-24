@@ -35,14 +35,14 @@ export interface IScanResult {
     QueryVersionCode: string;
 }
 
-export interface IScanDateTime {
+interface IScanDateTime {
     startedOn: string;
     finishedOn: string;
     engineStartedOn: string;
     engineFinishedOn: string;
 }
 
-export interface IScanState {
+interface IScanState {
     path: string;
     sourceId: string;
     filesCount: number;
@@ -73,4 +73,40 @@ export interface IScan {
     engineServer: any;
     finishedScanStatus: any;
     partialScanReasons: any;
+}
+
+export interface IQuery {
+    QueryName: string;
+    QueryId: number;
+    AmountOfResults: number;
+    Severity: number;
+}
+
+export interface IVulnerability {
+    name: string;
+    ocurrences: number;
+    severity: string;
+}
+
+export interface ICombinedResults {
+    overallRiskScore: number;
+    newIssues: number;
+    recurrentIssues: number;
+    high: number;
+    medium: number;
+    low: number;
+    toVerify: number;
+    urgent: number;
+    confirmed: number;
+    notExploitable: number;
+    proposedNotExploitable: number;
+    loc: number;
+    scannedFiles: number;
+    totalScannedProjects: number;
+}
+
+export interface IConsolidatedData {
+    combinedResults: IStringTMap<number>;
+    resultsByScan: IStringTMap<number>;
+    vulnerabilities: IStringTMap<IVulnerability>;
 }

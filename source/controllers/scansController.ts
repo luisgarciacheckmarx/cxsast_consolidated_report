@@ -1,10 +1,8 @@
 import dateFormat from 'dateformat';
+import orderBy from 'lodash/orderBy';
 import { INITIAL_COMBINED_RESULTS, SEVERITY_MAP, STATUS_MAP, STATE_MAP } from '../utils/constants';
 import { RestService, SoapService } from '../services';
-import { IStringTMap, IProject, IScan, IScanResult } from '../types';
-
-export let combinedResults: IStringTMap<number> = INITIAL_COMBINED_RESULTS;
-export let resultsByScan: IStringTMap<any> = [];
+import { IStringTMap, IProject, IScan, IScanResult, IConsolidatedData, IQuery } from '../types';
 
 const getSelectedProjects = async (namePattern: string) => {
     const cx = await RestService.getInstance();
@@ -19,7 +17,7 @@ const getLastScan = async (projectId: number) => {
     return scan.data[0];
 };
 
-const getScanResults = (scanId: number) => {
+const getScanResults = (scanId: number): Promise<IScanResult[]> => {
     return new Promise(async resolve => {
         await SoapService.getInstance().then(({ client, sessionData }: any) => {
             const data = { ...sessionData, scanId };
@@ -33,7 +31,25 @@ const getScanResults = (scanId: number) => {
     });
 };
 
-export const setProjectsData = async (namePattern: string) => {
+const getQueriesForScan = (scanId: number): Promise<IQuery[]> => {
+    return new Promise(async resolve => {
+        await SoapService.getInstance().then(({ client, sessionData }: any) => {
+            const data = { ...sessionData, scanId };
+
+            client.GetQueriesForScan(data, (_err: any, { GetQueriesForScanResult }: any) => {
+                GetQueriesForScanResult.IsSuccesfull && GetQueriesForScanResult.Queries
+                    ? resolve(GetQueriesForScanResult.Queries.CxWSQueryVulnerabilityData)
+                    : resolve([]);
+            });
+        });
+    });
+};
+
+export const getReportData = async (namePattern: string): Promise<IConsolidatedData> => {
+    const combinedResults = INITIAL_COMBINED_RESULTS;
+    const resultsByScan: IStringTMap<any> = [];
+    let vulnerabilities: IStringTMap<any> = {};
+
     const selectedProjects: [IProject] = await getSelectedProjects(namePattern);
 
     combinedResults.totalScannedProjects = selectedProjects.length;
@@ -63,7 +79,9 @@ export const setProjectsData = async (namePattern: string) => {
                         low: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
                     };
 
-                    const scanResults: any = await getScanResults(lastScan.id);
+                    const scanResults = await getScanResults(lastScan.id);
+                    const scanQueries = await getQueriesForScan(lastScan.id);
+
                     const severity = lastScan.scanRiskSeverity;
 
                     combinedResults.loc += lastScan.scanState.linesOfCode;
@@ -88,13 +106,39 @@ export const setProjectsData = async (namePattern: string) => {
                         data[STATE_MAP[scanResult.State]]++;
                     });
 
+                    scanQueries.forEach((query: IQuery) => {
+                        if (query && query.AmountOfResults > 0) {
+                            if (!vulnerabilities[query.QueryName]) {
+                                vulnerabilities[query.QueryName] = {
+                                    name: query.QueryName.replace(/_/g, ' '),
+                                    occurrences: 0,
+                                    severityLabel: SEVERITY_MAP[query.Severity],
+                                    severity: query.Severity,
+                                };
+                            }
+                            vulnerabilities[query.QueryName].occurrences += query.AmountOfResults;
+                        }
+                    });
                     resultsByScan.push(data);
                 } else {
-                    throw new Error('There isnt any finished scan for the specified project(s)!');
+                    throw new Error('There is not any finished scan for the specified project(s)!');
                 }
             })
         );
     } else {
         throw new Error('There is no projects with the specified names/name pattern!');
     }
+
+    if (Object.keys(vulnerabilities).length) {
+        vulnerabilities = orderBy(vulnerabilities, ['severity', 'occurrences'], ['desc', 'desc']);
+    } else {
+        // this is simplify the mpty states on the templates
+        vulnerabilities = [];
+    }
+
+    return {
+        combinedResults,
+        resultsByScan,
+        vulnerabilities,
+    };
 };
