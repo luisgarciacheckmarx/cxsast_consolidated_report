@@ -24,7 +24,7 @@
         }
     },
     "scripts": {
-        "dev": "nodemon --watch source --exec ts-node source/index.ts --projectPattern NodeGoat-test2 --appName 'nodegoat-test' --emailSubject 'Emails Test Subject' --emailRecipients 'email1@mail.com, email2@mail.com'",
+        "dev": "nodemon --watch source --exec ts-node source/index.ts --projectPattern node --appName 'nodegoat-test' --emailSubject 'Emails Test Subject' --emailRecipients 'email1@mail.com, email2@mail.com'",
         "doc": "docsify serve ./docs",
         "lint": "npm run ci:check:code",
         "test": "npm run ci:test:unit",
@@ -41,7 +41,16 @@
         "ci:dist:clean": "rm -rf ./dist && mkdir ./dist",
         "ci:dist:prepare": "cp ./README.md ./dist &&  cp ./CHANGELOG.md ./dist && cp ./LICENSE ./dist && cp -R resources ./dist && cp config-sample.json ./dist",
         "ci:dist:win-x64": "pkg --targets node10-win-x64 build/index.js --output dist/cxsast_consolidated_report_v${npm_package_version}_win_x64.exe",
-        "ci:release": "semantic-release"
+        "ci:release": "semantic-release",
+        "commit": "git-cz"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "hooks": {
+        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     },
     "dependencies": {
         "axios": "0.19.0",
@@ -83,6 +92,7 @@
         "ts-jest": "24.2.0",
         "ts-loader": "6.2.1",
         "ts-node": "8.5.4",
+        "cz-conventional-changelog": "3.0.2",
         "tslint": "5.20.1",
         "tslint-config-prettier": "1.18.0",
         "typescript": "3.7.4"

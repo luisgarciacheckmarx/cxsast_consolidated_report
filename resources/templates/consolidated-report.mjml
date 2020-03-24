@@ -163,7 +163,7 @@
 
     <mj-section>
       <mj-column padding="0">
-        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0 0 20px">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
           <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
             <th style="border-right: 1px solid #fff">Project</th>
             <th style="border-right: 1px solid #fff">Total</th>
@@ -206,7 +206,7 @@
 
     <mj-section>
       <mj-column padding="0">
-        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0 0 20px">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
           <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
             <th style="border-right: 1px solid #fff">Project</th>
             <th style="border-right: 1px solid #fff">Total</th>
@@ -263,7 +263,7 @@
     </mj-section>
     <mj-section>
       <mj-column padding="0">
-        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0 0 20px">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
           <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
             <th style="border-right: 1px solid #fff">Severity</th>
             <th style="border-right: 1px solid #fff">Totals</th>
@@ -324,17 +324,21 @@
         <mj-text font-size="18px" font-weight="bold" padding-top="0">
           4. Result summary
         </mj-text>
+        <mj-text font-size="16px" padding-top="10px" line-height="22px">
+          The following table shows all the <b>unresolved</b> vulnerabilities found with the amount of occurrences and severity.
+        </mj-text>
       </mj-column>
     </mj-section>
 
     <mj-section>
       <mj-column padding="0">
-        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0 0 20px">
+        <mj-table container-background-color="#F6F6F6" cellpadding="3" padding="0">
           <tr align="center" style="background-color: #1F282A; height:30px; color:#fff">
             <th style="border-right: 1px solid #fff">Vulnerability Type</th>
             <th style="border-right: 1px solid #fff">Occurrences</th>
-            <th style="border-right: 1px solid #fff">Severity</th>
+            <th>Severity</th>
           </tr>
+
           <mj-raw>
             {{#each vulnerabilities}}
           </mj-raw>
@@ -346,7 +350,27 @@
           <mj-raw>
             {{/each}}
           </mj-raw>
+
+          <mj-raw>
+            {{#unless vulnerabilities}}
+          </mj-raw>
+          <tr align="center" style="border-bottom: 1px solid #fff; line-height: 40px">
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+          <mj-raw>
+            {{/unless}}
+          </mj-raw>
         </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column padding="0">
+        <mj-text align="center" font-size="12px">
+          Checkmarx | {{year}}
+        </mj-text>
       </mj-column>
     </mj-section>
   </mj-body>
