@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.4.1...v1.5.0) (2020-03-24)
+
+
+### Bug Fixes
+
+* **audit:** add audit-resolver to bypass handlebars temporary error ([846bc87](https://github.com/cxpsemea/cxsast_consolidated_report/commit/846bc87687ac5e3d3df2afb086461d4deb2ff1c0))
+* **soap:** add bluebird dependency back to be used by the soap client ([076260d](https://github.com/cxpsemea/cxsast_consolidated_report/commit/076260daa9ed39f4fd2c76e607f4dce46540869a))
+
+
+### Features
+
+* **vulnerabilities:** add vulnaribilities calculation ([a3d8b5a](https://github.com/cxpsemea/cxsast_consolidated_report/commit/a3d8b5aeb89a71ff67528e4999b4d61984e70e3b))
+* add queriesForScan soap fetch ([6452fa6](https://github.com/cxpsemea/cxsast_consolidated_report/commit/6452fa64e82b5a239ad46f154fa8994306a07f8c))
+
 ## [1.4.1](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.4.0...v1.4.1) (2020-02-14)
 
 
