@@ -1,3 +1,18 @@
+### [UNMAINTAINED]
+
+This code can still be used but is no longer being maintained!
+
+This type of report/functionality was added to the [CxSAST Custom Reporting](https://github.com/cxpsemea/cxsast_custom_reporting) tool because,  it made sense to have a ability to generate more than one type of report in the same tool instead of having it separated in two repositories.
+
+Thee behavior and the report itself is pretty similar to this one but there are some minor particularities:
+
+- the data is no longer being fetched via SAST API. Instead we are fetching by direct connection to the database due to some performance issues.
+- the .html report file is no longer saved. Instead we (optionally) save the report as a pdf file but for this we need to have the Google Chrome .exe installed. See the [Configuration](https://cxpsemea.github.io/cxsast_custom_reporting/#/pages/CONFIGURATION) page for more details.
+
+If none of this changes is a "deal breaker" for you, we strongly advise you to change to the [CxSAST Custom Reporting](https://github.com/cxpsemea/cxsast_custom_reporting). 
+
+Please be sure to check the  [CxSAST Custom Reporting Documentation](https://cxpsemea.github.io/cxsast_custom_reporting/#/) an please contact us if you need any assistance.
+
 # CxSAST Consolidated Report
 
 An utility to generate consolidated reports from the CxSast scanned projects.
