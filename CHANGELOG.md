@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.5.0...v1.6.0) (2020-07-01)
+
+
+### Bug Fixes
+
+* **audit:** fix dependency audit issues ([ad344d3](https://github.com/cxpsemea/cxsast_consolidated_report/commit/ad344d3e7e0cd8fa7ee20e43488d933ef92c36eb))
+
+
+### Features
+
+* **arguments:** change the namePattern parameter to be a regex ([5b1741c](https://github.com/cxpsemea/cxsast_consolidated_report/commit/5b1741cbd41fe8861cdd84f0eb102173d24164a4))
+
 # [1.5.0](https://github.com/cxpsemea/cxsast_consolidated_report/compare/v1.4.1...v1.5.0) (2020-03-24)
 
 
