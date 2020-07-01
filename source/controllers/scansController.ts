@@ -1,14 +1,17 @@
 import dateFormat from 'dateformat';
+import regexParser from 'regex-parser';
 import orderBy from 'lodash/orderBy';
 import { INITIAL_COMBINED_RESULTS, SEVERITY_MAP, STATUS_MAP, STATE_MAP } from '../utils/constants';
 import { RestService, SoapService } from '../services';
 import { IStringTMap, IProject, IScan, IScanResult, IConsolidatedData, IQuery } from '../types';
 
-const getSelectedProjects = async (namePattern: string) => {
+const getSelectedProjects = async (nameRegex: any) => {
     const cx = await RestService.getInstance();
     const projects = await cx.getProjects();
 
-    return projects.data.filter((project: IProject) => project.name.toLowerCase().startsWith(namePattern.toLowerCase()));
+    return projects.data.filter((project: IProject) => {
+        return regexParser(nameRegex).test(project.name);
+    });
 };
 
 const getLastScan = async (projectId: number) => {
@@ -18,7 +21,7 @@ const getLastScan = async (projectId: number) => {
 };
 
 const getScanResults = (scanId: number): Promise<IScanResult[]> => {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve) => {
         await SoapService.getInstance().then(({ client, sessionData }: any) => {
             const data = { ...sessionData, scanId };
 
@@ -32,7 +35,7 @@ const getScanResults = (scanId: number): Promise<IScanResult[]> => {
 };
 
 const getQueriesForScan = (scanId: number): Promise<IQuery[]> => {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve) => {
         await SoapService.getInstance().then(({ client, sessionData }: any) => {
             const data = { ...sessionData, scanId };
 
@@ -45,12 +48,12 @@ const getQueriesForScan = (scanId: number): Promise<IQuery[]> => {
     });
 };
 
-export const getReportData = async (namePattern: string): Promise<IConsolidatedData> => {
+export const getReportData = async (nameRegex: string): Promise<IConsolidatedData> => {
     const combinedResults = INITIAL_COMBINED_RESULTS;
     const resultsByScan: IStringTMap<any> = [];
     let vulnerabilities: IStringTMap<any> = {};
 
-    const selectedProjects: [IProject] = await getSelectedProjects(namePattern);
+    const selectedProjects: [IProject] = await getSelectedProjects(nameRegex);
 
     combinedResults.totalScannedProjects = selectedProjects.length;
 
@@ -120,13 +123,11 @@ export const getReportData = async (namePattern: string): Promise<IConsolidatedD
                         }
                     });
                     resultsByScan.push(data);
-                } else {
-                    throw new Error('There is not any finished scan for the specified project(s)!');
                 }
             })
         );
     } else {
-        throw new Error('There is no projects with the specified names/name pattern!');
+        throw new Error('There is no projects with the specified names/name regex!');
     }
 
     if (Object.keys(vulnerabilities).length) {

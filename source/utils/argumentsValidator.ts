@@ -7,7 +7,7 @@ const validateArgs = (args: any) => {
     }
 
     const schema = object().shape({
-        projectPattern: string().required(),
+        nameRegex: string().required(),
         appName: string().required(),
         emailSubject: string().required(),
         emailRecipients: array()

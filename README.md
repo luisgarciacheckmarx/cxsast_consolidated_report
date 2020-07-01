@@ -6,7 +6,7 @@ This type of report/functionality was added to the [CxSAST Custom Reporting](htt
 
 Thee behavior and the report itself is pretty similar to this one but there are some minor particularities:
 
-- the data is no longer being fetched via SAST API. Instead we are fetching by direct connection to the database due to some performance issues.
+- **the data is no longer being fetched via SAST API**. Instead we are fetching by direct connection to the database due to some performance issues.
 - the .html report file is no longer saved. Instead we (optionally) save the report as a pdf file but for this we need to have the Google Chrome .exe installed. See the [Configuration](https://cxpsemea.github.io/cxsast_custom_reporting/#/pages/CONFIGURATION) page for more details.
 
 If none of this changes is a "deal breaker" for you, we strongly advise you to change to the [CxSAST Custom Reporting](https://github.com/cxpsemea/cxsast_custom_reporting). 
@@ -65,13 +65,13 @@ In order to use the **CxSAST Consolidated Report** you just need to run the exec
 
 | Option          | Type   | Required | Description                                                                                                                                                                                                           |
 | --------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| projectPattern  | String | required | Should be a string to match project's name beginning. This will be used by [str.startsWith()](https://www.w3schools.com/jsref/jsref_startswith.asp) node function to select all the projects started with this string |
+| nameRegex  | String | required | A regex (/regularExpression/) that should match all projects names that will be used/selected for the report ex. /^app-.*/ |
 | appName         | String | required | The name of the app that will be displayed on the report                                                                                                                                                              |
 | emailSubject    | String | required | The email subject of the report                                                                                                                                                                                       |
 | emailRecipients | String | required | A list of comma separated emails of the recipients of the report                                                                                                                                                       |
 
 So the full command will look like this:
 
-```
-.\cxsast_consolidated_report_v{latestVersion}_win_x64.exe --projectPattern "Test project" --appName "Test Project Reports" --emailSubject "Emails Test Subject" --emailRecipients "email1@mail.com, email2@mail.com"
+```powershell
+.\cxsast_consolidated_report_v{latestVersion}_win_x64.exe --nameRegex '/^testProject-.*/' --appName "Test Project Reports" --emailSubject "Emails Test Subject" --emailRecipients "email1@mail.com, email2@mail.com"
 ```

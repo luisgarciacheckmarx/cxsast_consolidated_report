@@ -14,7 +14,7 @@ const main = async () => {
 
     try {
         const date = new Date();
-        const data = await getReportData(String(args.projectPattern));
+        const data = await getReportData(String(args.nameRegex));
         log.info('Finished the data fetch!');
 
         const compiledTemplate = reportGenerator.getCompiledHtml({
