@@ -12,6 +12,8 @@ const handleError = (error: AxiosError) => {
         message = error.message;
     }
 
+    console.log('En handleError');
+    console.log(message);
     log.fatal(message);
 
     process.exit();
