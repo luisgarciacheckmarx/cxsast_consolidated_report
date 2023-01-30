@@ -14,9 +14,9 @@
         "sast",
         "reporting"
     ],
-    "repository": "https://github.com/cxpsemea/cxsast_consolidated_report.git",
-    "bugs": "https://github.com/cxpsemea/cxsast_consolidated_report/issues",
-    "homepage": "https://github.com/cxpsemea/cxsast_consolidated_report#readme",
+    "repository": "https://github.com/luisgarciacheckmarx/cxsast_consolidated_report.git",
+    "bugs": "https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/issues",
+    "homepage": "https://github.com/luisgarciacheckmarx/cxsast_consolidated_report#readme",
     "husky": {
         "hooks": {
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
