@@ -3,9 +3,9 @@
 //import yargs from 'yargs';
 //import { getReportData } from './controllers/scansController';
 import { EmailService } from './services';
-import { logger, handleError } from './utils';
+import { handleError } from './utils';
 
-const log = logger('main');
+//const log = logger('main');
 //const args = yargs.argv;
 
 console.log('Hola caracola 1 ');
@@ -14,7 +14,7 @@ const main = async () => {
     //validateArgs(args);
     console.log('Hola caracola 2');
     
-    log.info('fetching scans data ...');
+    //log.info('fetching scans data ...');
 
     try {
         //const date = new Date();
