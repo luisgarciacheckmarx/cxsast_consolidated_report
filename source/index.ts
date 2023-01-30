@@ -27,7 +27,6 @@ const main = async () => {
 
     schema.validate(args).catch((err: any) => {
         console.log('En Validate ERROR');
-        handleError(err);
     });
 
 };
