@@ -1,3 +1,15 @@
+## [1.0.20](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/compare/v1.0.19...v1.0.20) (2023-01-30)
+
+
+### Bug Fixes
+
+* **kk:** mmm ([a105be1](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/a105be11f7caa0c48393bd2d31a88beded969f8e))
+* **kk:** ppp ([0474701](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/0474701c67f980125618f1cffe446520414405e1))
+* **kk:** ppp ([038ab05](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/038ab054dd9e107489ba0d827f6e82799aae7832))
+* **kk:** ppp ([3cc454b](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/3cc454b653f06c3f60d0351d8908110921ab1235))
+* **kk:** ppp ([52236b6](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/52236b688bf62a0578f98109cec6bd40cb66d7dc))
+* **ll:** kkk ([9fa4716](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/9fa47168883630fa2f61af3ed16a146304e6c988))
+
 ## [1.0.19](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/compare/v1.0.18...v1.0.19) (2023-01-30)
 
 
