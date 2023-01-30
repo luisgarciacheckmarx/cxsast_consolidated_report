@@ -1,3 +1,10 @@
+## [1.0.22](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/compare/v1.0.21...v1.0.22) (2023-01-30)
+
+
+### Bug Fixes
+
+* **hora:** esto va a funcionar ([9b7a4e9](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/9b7a4e9ffca1eefed2654817aeea02b2c30cb126))
+
 ## [1.0.21](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/compare/v1.0.20...v1.0.21) (2023-01-30)
 
 
