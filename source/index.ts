@@ -8,9 +8,11 @@ import { logger, handleError, reportGenerator } from './utils';
 const log = logger('main');
 //const args = yargs.argv;
 
+console.log('Hola caracola 1 ');
+
 const main = async () => {
     //validateArgs(args);
-    console.log('Hola caracola');
+    console.log('Hola caracola 2');
     
     log.info('fetching scans data ...');
 
@@ -29,8 +31,11 @@ const main = async () => {
 
         EmailService.sendEmail(compiledTemplate, 'emailSubject', 'emailRecipients', 'appName');
     } catch (error) {
+        console.log('Hola caracola 3');
         handleError(error);
     }
 };
 
+console.log('Hola caracola 0 ');
 main();
+console.log('Hola caracola 4');
