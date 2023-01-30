@@ -10,7 +10,7 @@ import { handleError } from './utils';
 
 console.log('Hola caracola 1 ');
 
-const main = async () => {
+const main = () => {
     //validateArgs(args);
     console.log('Hola caracola 2');
     
