@@ -9,7 +9,7 @@
 
 const main = async () => {
     
-    console.log('Hola caracola ');
+    console.info('Hola caracola 1');
     //console.log('(%d,%d)', args.x, args.y);
 
 };
