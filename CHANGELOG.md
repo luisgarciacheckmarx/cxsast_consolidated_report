@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/compare/v1.0.0...v1.0.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* **pencil:** stop graphite breaking when too much pressure applied ([59b7c0c](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/59b7c0c1576daac1d434200af369b3036cc4ec6e))
+
 # 1.0.0 (2023-01-30)
 
 
