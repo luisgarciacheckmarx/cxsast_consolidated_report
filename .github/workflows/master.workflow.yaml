@@ -46,3 +46,7 @@ jobs:
       - name: LGV
         run:
           ls -ltr
+          
+      - name: LGV2
+        run:
+          ./kk.exe
