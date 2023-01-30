@@ -4,7 +4,7 @@
 import { logger } from './utils'; 
 
 const log = logger('main');
-const args = yargs.argv;
+
 
 const main = async () => {
     
