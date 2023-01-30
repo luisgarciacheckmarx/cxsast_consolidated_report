@@ -14,9 +14,9 @@
 //  categories: { default: { appenders: ["cheese"], level: "error" } },
 //});
 
-const logger = log4js.getLogger();
-logger.level = "debug";
-logger.debug("Some debug messages");
+//const logger = log4js.getLogger();
+//logger.level = "debug";
+//logger.debug("Some debug messages");
 
 import { configure, getLogger } from 'log4js';
 configure('./filename');
