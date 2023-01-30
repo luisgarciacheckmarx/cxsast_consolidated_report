@@ -19,7 +19,7 @@ const main = async () => {
     try {
         //const date = new Date();
         //const data = await getReportData(String('nameRegex'));
-        log.info('Finished the data fetch!');
+        console.log('Finished the data fetch!');
 
         //const compiledTemplate = reportGenerator.getCompiledHtml({
         //    ...data,
