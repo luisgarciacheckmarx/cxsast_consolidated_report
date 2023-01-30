@@ -10,7 +10,8 @@ const log = logger('main');
 
 const main = async () => {
     //validateArgs(args);
-
+    console.log('Hola caracola');
+    
     log.info('fetching scans data ...');
 
     try {
