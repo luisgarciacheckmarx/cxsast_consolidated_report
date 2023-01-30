@@ -92,7 +92,7 @@
         "jest": "24.9.0",
         "nodemon": "2.0.2",
         "npm-audit-resolver": "2.2.0",
-        "pkg": "4.4.9",
+        "pkg": "5.8.0",
         "semantic-release": "15.14.0",
         "ts-jest": "24.2.0",
         "ts-loader": "6.2.1",
