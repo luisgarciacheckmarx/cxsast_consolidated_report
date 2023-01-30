@@ -1,7 +1,7 @@
 
 import yargs from 'yargs';
 
-import { logger, validateArgs } from './utils';
+import { logger, validateArgs } from './utils'; 
 
 const log = logger('main');
 const args = yargs.argv;
