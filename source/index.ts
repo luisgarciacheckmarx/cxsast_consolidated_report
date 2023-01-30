@@ -28,7 +28,8 @@ const main = () => {
         //    year: dateFormat(date, 'yyyy'),
         //    appName: String('appName'),
         //});
-        const compiledTemplate = "";
+        //const compiledTemplate = "";
+        console.log('Hola caracola 2.1');
 
         //EmailService.sendEmail(compiledTemplate, 'emailSubject', 'emailRecipients', 'appName');
     } catch (error) {
