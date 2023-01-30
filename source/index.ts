@@ -2,14 +2,15 @@
 
 
 
+import yargs from 'yargs';
 
-const log = logger('main');
+const args = yargs.argv;
 
 
 const main = async () => {
     
     console.log('Hola caracola ');
-
+    validateArgs(args);
 
 };
 
