@@ -3,7 +3,7 @@
 
 
 import yargs from 'yargs';
-import { validateArgs } from './utils';
+
 
 const args = yargs.argv;
 
