@@ -50,3 +50,7 @@ jobs:
       - name: LGV2
         run:
           ./kk.exe
+      
+      - name: LGV3
+        run:
+          cat ./cheese.log
