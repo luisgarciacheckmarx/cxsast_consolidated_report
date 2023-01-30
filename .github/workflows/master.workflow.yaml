@@ -35,9 +35,14 @@ jobs:
       - name: build & pack
         run:
           npm run ci:build && npm run ci:dist
+          
 
       - name: release package
         run:
           npm run ci:release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          
+      - name: LGV
+        run:
+          ls -ltr
