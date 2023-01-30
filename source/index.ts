@@ -1,9 +1,9 @@
 
-import dateFormat from 'dateformat';
+//import dateFormat from 'dateformat';
 //import yargs from 'yargs';
 //import { getReportData } from './controllers/scansController';
 import { EmailService } from './services';
-import { logger, handleError, reportGenerator } from './utils';
+import { logger, handleError } from './utils';
 
 const log = logger('main');
 //const args = yargs.argv;
@@ -17,7 +17,7 @@ const main = async () => {
     log.info('fetching scans data ...');
 
     try {
-        const date = new Date();
+        //const date = new Date();
         //const data = await getReportData(String('nameRegex'));
         log.info('Finished the data fetch!');
 
