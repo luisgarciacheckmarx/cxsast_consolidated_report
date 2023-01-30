@@ -2,8 +2,8 @@
 //import dateFormat from 'dateformat';
 //import yargs from 'yargs';
 //import { getReportData } from './controllers/scansController';
-import { EmailService } from './services';
-import { handleError } from './utils';
+//import { EmailService } from './services';
+//import { handleError } from './utils';
 
 //const log = logger('main');
 //const args = yargs.argv;
@@ -30,10 +30,10 @@ const main = () => {
         //});
         const compiledTemplate = "";
 
-        EmailService.sendEmail(compiledTemplate, 'emailSubject', 'emailRecipients', 'appName');
+        //EmailService.sendEmail(compiledTemplate, 'emailSubject', 'emailRecipients', 'appName');
     } catch (error) {
         console.log('Hola caracola 3');
-        handleError(error);
+        //handleError(error);
     }
 };
 
