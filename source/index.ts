@@ -15,7 +15,7 @@ const main = async () => {
 
     try {
         const date = new Date();
-        const data = await getReportData(String(args.nameRegex));
+        const data = await getReportData(String('nameRegex'));
         log.info('Finished the data fetch!');
 
         const compiledTemplate = reportGenerator.getCompiledHtml({
@@ -23,7 +23,7 @@ const main = async () => {
             totalUnresolvedIssues: data.combinedResults.newIssues + data.combinedResults.recurrentIssues,
             currentDate: dateFormat(date, 'dddd, mmmm dS, yyyy, h:MM:ss TT'),
             year: dateFormat(date, 'yyyy'),
-            appName: String(args.appName),
+            appName: String('appName'),
         });
 
         EmailService.sendEmail(compiledTemplate, 'emailSubject', 'emailRecipients', 'appName');
