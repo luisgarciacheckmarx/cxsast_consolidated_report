@@ -8,17 +8,26 @@
 //const log = logger('main');
 //const args = yargs.argv;
 
-import * as log4js from "log4js";
-log4js.configure({
-  appenders: { cheese: { type: "file", filename: "cheese.log" } },
-  categories: { default: { appenders: ["cheese"], level: "error" } },
-});
+//import * as log4js from "log4js";
+//log4js.configure({
+//  appenders: { cheese: { type: "file", filename: "cheese.log" } },
+//  categories: { default: { appenders: ["cheese"], level: "error" } },
+//});
 
 const logger = log4js.getLogger();
 logger.level = "debug";
 logger.debug("Some debug messages");
 
+import { configure, getLogger } from 'log4js';
+configure('./filename');
+const logger = getLogger();
+logger.level = 'debug';
+logger.debug("Some debug messages");
 
+configure({
+	appenders: { cheese: { type: 'file', filename: 'cheese.log' } },
+	categories: { default: { appenders: ['cheese'], level: 'error' } }
+});
 
 
 
