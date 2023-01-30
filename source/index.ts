@@ -1,35 +1,35 @@
 
-
-
-
+import dateFormat from 'dateformat';
 //import yargs from 'yargs';
+import { getReportData } from './controllers/scansController';
+import { EmailService } from './services';
+import { logger, handleError, validateArgs, reportGenerator } from './utils';
 
+const log = logger('main');
 //const args = yargs.argv;
- 
-import * as yargs from 'yargs'
 
 const main = async () => {
-    
-    console.info('Hola caracola 1');
-    //console.log('(%d,%d)', args.x, args.y);
- let args = yargs
-        .option('input', {
-            alias: 'i',
-            demand: true
-        })
-        .option('year', {
-            alias: 'y',
-            description: "Year number",
-            demand: true
-        }).argv;
+    //validateArgs(args);
 
-    console.log(JSON.stringify(args));
+    log.info('fetching scans data ...');
 
+    try {
+        const date = new Date();
+        const data = await getReportData(String(args.nameRegex));
+        log.info('Finished the data fetch!');
+
+        const compiledTemplate = reportGenerator.getCompiledHtml({
+            ...data,
+            totalUnresolvedIssues: data.combinedResults.newIssues + data.combinedResults.recurrentIssues,
+            currentDate: dateFormat(date, 'dddd, mmmm dS, yyyy, h:MM:ss TT'),
+            year: dateFormat(date, 'yyyy'),
+            appName: String(args.appName),
+        });
+
+        EmailService.sendEmail(compiledTemplate, 'emailSubject', 'emailRecipients', 'appName');
+    } catch (error) {
+        handleError(error);
+    }
 };
 
 main();
-
-
-
-
-    
