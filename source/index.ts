@@ -4,6 +4,7 @@
 
 import yargs from 'yargs';
 
+import { string, object, array } from 'yup';
 
 const args = yargs.argv;
 
