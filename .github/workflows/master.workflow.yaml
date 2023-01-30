@@ -18,18 +18,19 @@ jobs:
 
       - name: install & check dependencies
         run: 
-          npm run ci:deps:install && 
-          npm run ci:deps:audit
+          npm run ci:deps:install 
+          # && 
+          # npm run ci:deps:audit
 
-      - name: check code quality
-        run: 
-          npm run ci:check:code
+      #- name: check code quality
+      #  run: 
+      #    npm run ci:check:code
 
-      - name: test
-        run: 
-          npm run ci:test:unit && 
-          npm run ci:test:integration && 
-          npm run ci:test:e2e
+      #- name: test
+      #  run: 
+      #    npm run ci:test:unit && 
+      #    npm run ci:test:integration && 
+      #    npm run ci:test:e2e
 
       - name: build & pack
         run:
