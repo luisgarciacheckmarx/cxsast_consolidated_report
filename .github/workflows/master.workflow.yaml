@@ -37,20 +37,20 @@ jobs:
           npm run ci:build && npm run ci:dist
           
 
-      #- name: release package
-      #  run:
-      #    npm run ci:release
-      #  env:
-      #    GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: release package
+        run:
+          npm run ci:release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           
       - name: LGV
         run:
-          ls -ltr
+          ls -ltr ./dist
           
-      - name: LGV2
-        run:
-          ./kk.exe
+      #- name: LGV2
+      #  run:
+      #    ./kk.exe
       
-      - name: LGV3
-        run:
-          cat ./cheese.log
+      #- name: LGV3
+      #  run:
+      #    cat ./cheese.log
