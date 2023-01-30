@@ -1,3 +1,10 @@
+## [1.0.17](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/compare/v1.0.16...v1.0.17) (2023-01-30)
+
+
+### Bug Fixes
+
+* **kk:** kkkk ([aaff482](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/commit/aaff4828b06245d720956444bb90ca1d2e6b1b6f))
+
 ## [1.0.16](https://github.com/luisgarciacheckmarx/cxsast_consolidated_report/compare/v1.0.15...v1.0.16) (2023-01-30)
 
 
