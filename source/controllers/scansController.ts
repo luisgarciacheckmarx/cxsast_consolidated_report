@@ -49,6 +49,8 @@ const getQueriesForScan = (scanId: number): Promise<IQuery[]> => {
 };
 
 export const getReportData = async (nameRegex: string): Promise<IConsolidatedData> => {
+    log.debug('LGV::getReportData In getReportData ...');
+    
     const combinedResults = INITIAL_COMBINED_RESULTS;
     const resultsByScan: IStringTMap<any> = [];
     let vulnerabilities: IStringTMap<any> = {};
@@ -57,6 +59,8 @@ export const getReportData = async (nameRegex: string): Promise<IConsolidatedDat
 
     combinedResults.totalScannedProjects = selectedProjects.length;
 
+    
+    log.debug('LGV::getReportData  After selectedProjects ...');
     if (selectedProjects.length) {
         await Promise.all(
             selectedProjects.map(async (project: IProject) => {
@@ -82,7 +86,9 @@ export const getReportData = async (nameRegex: string): Promise<IConsolidatedDat
                         low: { urgent: 0, toVerify: 0, notExploitable: 0, proposedNotExploitable: 0, confirmed: 0 },
                     };
 
+                    log.debug('LGV::getReportData  Go to getScanResults ...');
                     const scanResults = await getScanResults(lastScan.id);
+                    log.debug('LGV::getReportData  Go to getQueriesForScan ...');
                     const scanQueries = await getQueriesForScan(lastScan.id);
 
                     const severity = lastScan.scanRiskSeverity;
@@ -94,6 +100,7 @@ export const getReportData = async (nameRegex: string): Promise<IConsolidatedDat
                         combinedResults.overallRiskScore = severity;
                     }
 
+                    log.debug('LGV::getReportData  Go to scanResults.forEach ...');
                     scanResults.forEach((scanResult: IScanResult) => {
                         combinedResults[STATE_MAP[scanResult.State]]++;
                         combinedResults[STATUS_MAP[scanResult.ResultStatus]]++;
@@ -109,6 +116,7 @@ export const getReportData = async (nameRegex: string): Promise<IConsolidatedDat
                         data[STATE_MAP[scanResult.State]]++;
                     });
 
+                    log.debug('LGV::getReportData  Go to scanQueries.forEach ...');
                     scanQueries.forEach((query: IQuery) => {
                         if (query && query.AmountOfResults > 0) {
                             if (!vulnerabilities[query.QueryName]) {
@@ -122,6 +130,7 @@ export const getReportData = async (nameRegex: string): Promise<IConsolidatedDat
                             vulnerabilities[query.QueryName].occurrences += query.AmountOfResults;
                         }
                     });
+                    log.debug('LGV::getReportData  Go to resultsByScan ...');
                     resultsByScan.push(data);
                 }
             })
@@ -136,7 +145,9 @@ export const getReportData = async (nameRegex: string): Promise<IConsolidatedDat
         // this is simplify the mpty states on the templates
         vulnerabilities = [];
     }
-
+    
+     log.debug('LGV::getReportData  Go to return ...');
+    
     return {
         combinedResults,
         resultsByScan,
