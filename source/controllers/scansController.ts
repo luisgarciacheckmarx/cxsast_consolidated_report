@@ -26,11 +26,15 @@ const getLastScan = async (projectId: number) => {
 };
 
 const getScanResults = (scanId: number): Promise<IScanResult[]> => {
+    log.debug('LGV::getScanResults In getScanResults ...');
     return new Promise(async (resolve) => {
         await SoapService.getInstance().then(({ client, sessionData }: any) => {
+            log.debug('LGV::getScanResults In const data ...');
             const data = { ...sessionData, scanId };
 
+            log.debug('LGV::getScanResults Go to  client.GetResultsForScan ...');
             client.GetResultsForScan(data, (_err: any, { GetResultsForScanResult }: any) => {
+                log.debug('LGV::getScanResults Go to  GetResultsForScanResult.IsSuccesfull ...');
                 GetResultsForScanResult.IsSuccesfull && GetResultsForScanResult.Results
                     ? resolve(GetResultsForScanResult.Results.CxWSSingleResultData)
                     : resolve([]);
