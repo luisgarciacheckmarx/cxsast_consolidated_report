@@ -1,10 +1,14 @@
 import soap = require('soap')
-import { config } from '../utils'
+import { config, logger } from '../utils'
+
+
+const log = logger('main');
 
 const baseURL: string = `${config.host}/CxWebInterface/Portal/CxWebService.asmx?WSDL`
 
 const login = (client: any) =>
   new Promise((resolve, reject) => {
+    log.debug('LGV::login In login ...');
     const loginData = {
       applicationCredentials: {
         User: config.username,
@@ -13,9 +17,11 @@ const login = (client: any) =>
       lcid: 1033,
     }
 
+    log.debug('LGV::login Go to client.Login ...');
     client.Login(loginData, (_err: any, { LoginResult }: any) => {
       const { IsSuccesfull, SessionId } = LoginResult
 
+      log.debug('LGV::login Go to return IsSuccesfull ...');
       return IsSuccesfull
         ? resolve(SessionId)
         : reject({
@@ -26,13 +32,16 @@ const login = (client: any) =>
 
 const getClient = () =>
   new Promise((resolve, reject) => {
+    log.debug('LGV::getClient Go to soap.createClient ...');
     soap.createClient(baseURL, (err, client) => (err ? reject(err) : resolve(client)))
   })
 
 const soapService = (() => {
+  log.debug('LGV::soapService In soapService ...');
   let instance: any
 
   async function init() {
+    log.debug('LGV::soapService In function ...');
     const client: any = await getClient()
     const sessionData: any = {
       sessionID: await login(client),
@@ -41,6 +50,7 @@ const soapService = (() => {
   }
 
   return {
+    log.debug('LGV::soapService Go to  getInstance ...');
     getInstance: async () => {
       if (!instance) {
         instance = init()
