@@ -49,13 +49,14 @@ const soapService = (() => {
     return { client, sessionData }
   }
 
+  log.debug('LGV::soapService Go to  return ...');
   return {
-    log.debug('LGV::soapService Go to  getInstance ...');
     getInstance: async () => {
+      log.debug('LGV::soapService Go to  if instance ...');
       if (!instance) {
         instance = init()
       }
-
+      log.debug('LGV::soapService Go to  return instance ...');
       return instance
     },
   }
