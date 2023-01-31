@@ -19,9 +19,12 @@ const login = (client: any) =>
 
     log.debug('LGV::login Go to client.Login ...');
     client.Login(loginData, (_err: any, { LoginResult }: any) => {
-      const { IsSuccesfull, SessionId } = LoginResult
+      const { IsSuccesfull, SessionId, ErrorMessage } = LoginResult
 
-      log.debug('LGV::login Go to return IsSuccesfull ...');
+      log.debug('LGV::login Go to return IsSuccesfull (1)...');
+      log.debug(IsSuccesfull);
+      log.debug(ErrorMessage);
+      log.debug('LGV::login Go to return IsSuccesfull (2)...');
       return IsSuccesfull
         ? resolve(SessionId)
         : reject({
