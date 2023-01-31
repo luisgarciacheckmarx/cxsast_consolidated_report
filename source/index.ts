@@ -12,6 +12,7 @@ const main = async () => {
     validateArgs(args);
 
     log.info('fetching scans data ...');
+    log.debug('fetching scans data ...');
 
     try {
         const date = new Date();
