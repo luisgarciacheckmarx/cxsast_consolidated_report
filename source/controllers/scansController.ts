@@ -5,6 +5,11 @@ import { INITIAL_COMBINED_RESULTS, SEVERITY_MAP, STATUS_MAP, STATE_MAP } from '.
 import { RestService, SoapService } from '../services';
 import { IStringTMap, IProject, IScan, IScanResult, IConsolidatedData, IQuery } from '../types';
 
+import { logger } from './utils';
+
+const log = logger('main');
+
+
 const getSelectedProjects = async (nameRegex: any) => {
     const cx = await RestService.getInstance();
     const projects = await cx.getProjects();
