@@ -7,7 +7,7 @@ logger.configure({
       layout: { type: 'pattern', pattern: '[%d] [%p] [cx reports generator] - %-15.15c : %m' },
     },
   },
-  categories: { default: { appenders: ['stdout'], level: 'INFO' } },
+  categories: { default: { appenders: ['stdout'], level: 'DEBUG' } },
 })
 
 export const log = (el: string) => logger.getLogger(el)
