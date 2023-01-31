@@ -2,7 +2,7 @@
     "private": true,
     "license": "MIT",
     "name": "cxsast_consolidated_report",
-    "version": "1.0.26",
+    "version": "1.0.27",
     "description": "An utility to generate consolidated reports for checkmarx projects.",
     "author": "Marcelo Pereira <marcgp@gmail.com>",
     "contributors": [
